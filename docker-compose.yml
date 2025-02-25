@@ -1,0 +1,16 @@
+services:
+    mariadb:
+        image: mariadb:latest
+        restart: always
+        environment:
+            MYSQL_USER: mariadb
+            MYSQL_PASSWORD: mariadb
+            MYSQL_DATABASE: mariadb
+            MARIADB_ROOT_PASSWORD: mariadb
+        ports:
+            - 3306:3306
+    adminer:
+        image: adminer:latest
+        restart: always
+        ports:
+            - 8080:8080
