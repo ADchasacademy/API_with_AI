@@ -1,24 +1,20 @@
 <?php
 
-use App\Http\Controllers\ChatbotController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
-Route::post('/chat', [ChatbotController::class, 'chat'])->name('chat');
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/chat/history', [ChatbotController::class, 'showChatHistory'])->name('chat.history');
-    Route::get('/chat/history/{sessionId}', [ChatbotController::class, 'showChatSessionHistory'])->name('chat.session.history');
-    Route::delete('/chat/history/{sessionId}', [ChatbotController::class, 'deleteChatHistory'])->name('chat.history.delete');
-});
+// Route::get('/', function () {
+//     $user = User::find(1);
+//     if (!$user) {
+//         return 'User not found!';
+//     }
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//     $token = $user->createToken('asd')->plainTextToken;
+//     dd($token);
+// });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+
 
 require __DIR__ . '/auth.php';
